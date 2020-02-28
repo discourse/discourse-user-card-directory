@@ -1,0 +1,34 @@
+{{#d-section pageClass="users"}}
+  {{#load-more selector=".user-card-directory .user-card-container" action=(action "loadMore")}}
+    <div class="container">
+      <div class='directory'>
+        {{plugin-outlet name="users-top" connectorTagName='div' args=(hash model=model)}}
+        <div class='clearfix'>
+          {{text-field value=nameInput placeholderKey="directory.filter_name" class="filter-name no-blur"}}
+        </div>
+
+        {{#conditional-loading-spinner condition=model.loading}}
+          {{#if userCards.length}}
+          <div class="user-card-directory">
+            {{#each userCards as |userCard|}}
+              <div class="user-card-container">
+                {{user-card-static
+                  user=userCard.user
+                  visible=true
+                  loading=userCard.loading
+                  username=userCard.user.username
+                  }}
+              </div>
+            {{/each}}
+            </div>
+            {{conditional-loading-spinner condition=model.loadingMore}}
+          {{else}}
+            <div class='clearfix'></div>
+            <p>{{i18n "directory.no_results"}}</p>
+          {{/if}}
+        {{/conditional-loading-spinner}}
+
+      </div>
+    </div>
+  {{/load-more}}
+{{/d-section}}
