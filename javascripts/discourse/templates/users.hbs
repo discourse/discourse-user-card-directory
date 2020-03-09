@@ -3,8 +3,20 @@
     <div class="container">
       <div class='directory'>
         {{plugin-outlet name="users-top" connectorTagName='div' args=(hash model=model)}}
-        <div class='clearfix'>
-          {{text-field value=nameInput placeholderKey="directory.filter_name" class="filter-name no-blur"}}
+        
+        <div class="filters">
+          {{period-chooser period=period onChange=(action (mut period))}}
+        </div>
+        <div class="filters">            
+          <span class="group-filter {{if group "active"}}">
+            {{combo-box content=availableGroups
+                      value=group
+                      options=(hash clearable=true none=(theme-prefix 'filter_by_group'))
+                      valueAttribute="value"}}
+          </span>
+          <span class="username-filter">
+            {{text-field value=nameInput placeholderKey="directory.filter_name" class="filter-name no-blur"}}
+          </span>
         </div>
 
         {{#conditional-loading-spinner condition=model.loading}}
@@ -18,6 +30,18 @@
                   loading=userCard.loading
                   username=userCard.user.username
                   }}
+                <div class='user-card-directory-footer'>
+                  {{#each stats as |stat|}}
+                    <span class="stat stat-{{stat.name}}">
+                      <span class="value">
+                        {{number (get userCard.directoryItem stat.name)}}
+                      </span>
+                      <span class="label">
+                        {{directory-toggle field=stat.name order=order asc=asc icon=stat.icon tagName="span"}}
+                      </span>
+                    </span>
+                  {{/each}}
+                </div>
               </div>
             {{/each}}
             </div>

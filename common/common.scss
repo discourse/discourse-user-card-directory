@@ -1,17 +1,79 @@
+.directory {
+  .filter-name {
+    float: none;
+  }
 
-.user-card-directory {
+  .filters {
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
-    justify-content: center;
-  
-    .user-card {
-      position: relative;
-      left: auto;
-      width: 100%;
-    }
-  
-    .user-card-container {
-      width: calc(50% - 40px);
-      margin: 50px 20px 10px 20px;
+
+    > span {
+      margin-bottom: 5px;
     }
   }
+
+  .group-filter:not(.active) .select-kit-header {
+    color: $primary-high;
+  }
+}
+
+.user-card-directory {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .user-card {
+    z-index: z("base");
+    position: relative;
+    left: auto;
+    width: 100%;
+    box-shadow: none;
+    margin: 0;
+
+    .badge-section {
+      overflow: hidden;
+    }
+  }
+
+  .usercard-controls {
+    display: none;
+  }
+
+  .user-card-container {
+    // width: calc(50% - 40px);
+    flex-grow: 1;
+    // flex-basis: min-content;
+    // width: 500px;
+    margin: 50px 5px 10px 5px;
+    background-color: $secondary;
+    box-shadow: shadow("card");
+    margin-bottom: auto;
+  }
+
+  .user-card-directory-footer {
+    background-color: $secondary;
+    padding: 0px 10px 10px 10px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .stat {
+      flex-basis: 0;
+      flex-grow: 1;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2px;
+
+      .label {
+        font-size: $font-down-2;
+
+        .d-icon {
+          margin-right: 0.2em;
+          color: $primary-medium;
+        }
+      }
+    }
+  }
+}
