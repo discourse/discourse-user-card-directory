@@ -41,10 +41,8 @@
   }
 
   .user-card-container {
-    // width: calc(50% - 40px);
     flex-grow: 1;
-    // flex-basis: min-content;
-    // width: 500px;
+    width: 500px;
     margin: 50px 5px 10px 5px;
     background-color: $secondary;
     box-shadow: shadow("card");
