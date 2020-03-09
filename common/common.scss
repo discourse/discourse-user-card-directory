@@ -19,14 +19,14 @@
 }
 
 .user-card-directory {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(calc(min(400px, 100%)), 1fr));
+  grid-gap: 60px 20px;
+  margin-top: 60px;
 
   .user-card {
     z-index: z("base");
     position: relative;
-    left: auto;
     width: 100%;
     box-shadow: none;
     margin: 0;
@@ -41,9 +41,8 @@
   }
 
   .user-card-container {
-    flex-grow: 1;
-    width: 500px;
-    margin: 50px 5px 10px 5px;
+    width: 100%;
+    
     background-color: $secondary;
     box-shadow: shadow("card");
     margin-bottom: auto;
