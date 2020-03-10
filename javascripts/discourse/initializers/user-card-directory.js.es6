@@ -13,16 +13,21 @@ export default {
 
     withPluginApi("0.8.7", api => {
       api.modifyClass("route:users", {
-        resetController(controller, isExisting) {
-          this._super(controller, isExisting);
-          if (isExisting) {
+        resetController(controller, isExiting) {
+          this._super(...arguments);
+          if (isExiting) {
             controller.set("cachedUserCardInfo", {});
           }
         }
       });
 
       api.modifyClass("controller:users", {
-        cachedUserCardInfo: {},
+        cachedUserCardInfo: null,
+
+        init(){
+          this.set("cachedUserCardInfo", {});
+          this._super(...arguments);
+        },
 
         stats: [
           { name: "likes_received", icon: "heart" },
@@ -75,6 +80,9 @@ export default {
               data: { user_ids: thisBatch.map(uc => uc.user.id).join(",") }
             });
             thisBatch.forEach(uc => {
+              // Each user card expects its own promise
+              // Rather than making a separate AJAX request for each
+              // We re-use the `user-cards.json` promise, and manipulate the data
               const convertedPromise = promise.then(data => {
                 // Find the correct user from users, and put it in the user attribute
                 // Use Object.assign to avoid contaminating the source object
@@ -84,7 +92,7 @@ export default {
               });
               return uc.user
                 .findDetails({ existingRequest: convertedPromise })
-                .then(() => uc.set("loading", false));
+                .finally(() => uc.set("loading", false));
             });
           }
 
