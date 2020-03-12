@@ -20,7 +20,13 @@
 
 .user-card-directory {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(calc(min(400px, 100%)), 1fr));
+
+  grid-template-columns: 1fr;
+
+  @media only screen and (min-width: 500px) {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  }
+  
   grid-gap: 60px 20px;
   margin-top: 60px;
 
