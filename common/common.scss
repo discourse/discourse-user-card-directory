@@ -26,6 +26,18 @@
   @media only screen and (min-width: 500px) {
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   }
+
+  .user-card-container{
+    margin: 60px 20px;
+  }
+
+  @supports (display: grid) {
+    display: grid;
+    
+    .user-card-container{
+      margin: 0;
+    }
+  }
   
   grid-gap: 60px 20px;
   margin-top: 60px;
