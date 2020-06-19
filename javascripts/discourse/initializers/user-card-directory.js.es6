@@ -53,6 +53,7 @@ export default {
 
         @discourseComputed("model.content.@each")
         userCards(allUsers) {
+          if (!allUsers) return [];
           const toLoad = [];
           const userCardInfos = allUsers.map(u => {
             if (this.cachedUserCardInfo[u.id]) {
