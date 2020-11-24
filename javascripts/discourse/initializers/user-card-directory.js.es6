@@ -55,8 +55,8 @@ export default {
         userCards(allUsers) {
           if (!allUsers) return [];
           const toLoad = [];
-          if(settings.hide_current_user && this.currentUser){
-            allUsers = allUsers.filter((u) => u.id != this.currentUser.id)
+          if (settings.hide_current_user && this.currentUser) {
+            allUsers = allUsers.filter((u) => u.id !== this.currentUser.id)
           }
           const userCardInfos = allUsers.map(u => {
             if (this.cachedUserCardInfo[u.id]) {
