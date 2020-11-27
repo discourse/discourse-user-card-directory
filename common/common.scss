@@ -14,7 +14,7 @@
   }
 
   .group-filter:not(.active) .select-kit-header {
-    color: $primary-high;
+    color: var(--primary-high);
   }
 }
 
@@ -61,13 +61,13 @@
   .user-card-container {
     width: 100%;
     
-    background-color: $secondary;
+    background-color: var(--secondary);
     box-shadow: shadow("card");
     margin-bottom: auto;
   }
 
   .user-card-directory-footer {
-    background-color: $secondary;
+    background-color: var(--secondary);
     padding: 0px 10px 10px 10px;
     display: flex;
     flex-wrap: wrap;
@@ -86,7 +86,7 @@
 
         .d-icon {
           margin-right: 0.2em;
-          color: $primary-medium;
+          color: var(--primary-medium);
         }
       }
     }
