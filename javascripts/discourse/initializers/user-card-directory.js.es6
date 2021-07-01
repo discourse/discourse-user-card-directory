@@ -29,34 +29,12 @@ export default {
           this._super(...arguments);
         },
 
-        stats: [
-          { name: "likes_received", icon: "heart" },
-          { name: "likes_given", icon: "heart" },
-          { name: "topic_count" },
-          { name: "post_count" },
-          { name: "topics_entered" },
-          { name: "posts_read" },
-          { name: "days_visited" }
-        ],
-
-        @discourseComputed("site.groups")
-        availableGroups(groups) {
-          return groups
-            .map(g => {
-              // prevents group "everyone" to be listed
-              if (g.id !== 0) {
-                return { name: g.name, value: g.name };
-              }
-            })
-            .filter(Boolean);
-        },
-
         @discourseComputed("model.content.@each")
         userCards(allUsers) {
           if (!allUsers) return [];
           const toLoad = [];
           if (settings.hide_current_user && this.currentUser) {
-            allUsers = allUsers.filter((u) => u.id !== this.currentUser.id)
+            allUsers = allUsers.filter((u) => u.id !== this.currentUser.id);
           }
           const userCardInfos = allUsers.map(u => {
             if (this.cachedUserCardInfo[u.id]) {
