@@ -3,4 +3,5 @@ en:
     description: Replaces the user directory with a grid of user cards
     settings:
       hide_current_user: Always hide the current user from the grid
+      show_stats: Show statistics under each user card
   filter_by_group: filter by group
