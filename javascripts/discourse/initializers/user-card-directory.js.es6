@@ -7,18 +7,44 @@ import { ajax } from "discourse/lib/ajax";
 export default {
   name: "user-card-directory",
   initialize(container) {
-    // This component provides a responsive template
-    // Delete the core mobile one
-    delete Ember.TEMPLATES["mobile/users"];
-
-    withPluginApi("0.8.7", api => {
+    withPluginApi("0.8.7", (api) => {
       api.modifyClass("route:users", {
         resetController(controller, isExiting) {
           this._super(...arguments);
           if (isExiting) {
             controller.set("cachedUserCardInfo", {});
           }
-        }
+        },
+      });
+
+      api.modifyClass("route:users", {
+        queryParams: {
+          cards: { refreshModel: true },
+        },
+
+        beforeModel(transition) {
+          this._super(transition);
+          if (
+            settings.default_view === "cards" &&
+            !transition.to.queryParams.cards
+          ) {
+            this.transitionTo({ queryParams: { cards: "yes" } });
+          }
+        },
+
+        model(params) {
+          return this._super(params).then((model) => {
+            model.showAsCards = params["cards"] === "yes";
+            return model;
+          });
+        },
+
+        renderTemplate(controller, model) {
+          if (model.showAsCards) {
+            return this.render("users-as-card-directory");
+          }
+          return this._super();
+        },
       });
 
       api.modifyClass("controller:users", {
