@@ -4,4 +4,5 @@ en:
     settings:
       hide_current_user: Always hide the current user from the grid
       show_stats: Show statistics under each user card
-  filter_by_group: filter by group
+  show_cards: Show as cards
+  show_table: Show as table

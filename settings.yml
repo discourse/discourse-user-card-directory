@@ -1,2 +1,8 @@
 hide_current_user: false
 show_stats: true
+default_view:
+  type: enum
+  default: "cards"
+  choices:
+    - "cards"
+    - "table"

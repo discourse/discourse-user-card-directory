@@ -8,5 +8,8 @@
   },
   "color_schemes": {
   },
-  "component": true
+  "component": true,
+  "modifiers": {
+    "svg_icons": ["id-card", "th-list"]
+  }
 }
