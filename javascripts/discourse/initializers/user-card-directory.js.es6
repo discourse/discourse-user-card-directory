@@ -16,10 +16,7 @@ export default {
             controller.set("cachedUserCardInfo", {});
           }
         },
-      });
 
-      api.modifyClass("route:users", {
-        pluginId: 'user-card-directory',
         queryParams: {
           cards: { refreshModel: true },
         },
