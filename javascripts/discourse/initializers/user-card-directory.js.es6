@@ -9,6 +9,7 @@ export default {
   initialize(container) {
     withPluginApi("0.8.7", (api) => {
       api.modifyClass("route:users", {
+        pluginId: 'user-card-directory',
         resetController(controller, isExiting) {
           this._super(...arguments);
           if (isExiting) {
@@ -18,6 +19,7 @@ export default {
       });
 
       api.modifyClass("route:users", {
+        pluginId: 'user-card-directory',
         queryParams: {
           cards: { refreshModel: true },
         },
@@ -48,6 +50,7 @@ export default {
       });
 
       api.modifyClass("controller:users", {
+        pluginId: 'user-card-directory',
         cachedUserCardInfo: null,
 
         init(){
