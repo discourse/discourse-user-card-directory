@@ -7,5 +7,5 @@ export default UserCardContents.extend({
   cleanUp() {},
   didInsertElement() {},
   willDestroyElement() {},
-  keyUp() {}
+  keyUp() {},
 });
