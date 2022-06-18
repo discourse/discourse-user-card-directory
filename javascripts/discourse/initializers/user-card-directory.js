@@ -6,7 +6,7 @@ import { ajax } from "discourse/lib/ajax";
 
 export default {
   name: "user-card-directory",
-  initialize(container) {
+  initialize() {
     withPluginApi("0.8.7", (api) => {
       api.modifyClass("route:users", {
         pluginId: 'user-card-directory',
@@ -57,7 +57,7 @@ export default {
 
         @discourseComputed("model.content.@each")
         userCards(allUsers) {
-          if (!allUsers) return [];
+          if (!allUsers) {return [];}
           const toLoad = [];
           if (settings.hide_current_user && this.currentUser) {
             allUsers = allUsers.filter((u) => u.id !== this.currentUser.id);

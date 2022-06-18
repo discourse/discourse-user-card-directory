@@ -1,6 +1,5 @@
 import {
   acceptance,
-  exists,
   count,
 } from "discourse/tests/helpers/qunit-helpers";
 import { test } from "qunit";
