@@ -1,15 +1,16 @@
 {
   "name": "User Card Directory",
+  "component": true,
   "about_url": "https://meta.discourse.org/t/user-card-directory/144479",
   "license_url": null,
   "authors": "David Taylor",
   "minimum_discourse_version": "2.5.0.beta2",
-  "assets": {
-  },
-  "color_schemes": {
-  },
-  "component": true,
+  "assets": {},
+  "color_schemes": {},
   "modifiers": {
-    "svg_icons": ["id-card", "th-list"]
+    "svg_icons": [
+      "id-card",
+      "th-list"
+    ]
   }
 }

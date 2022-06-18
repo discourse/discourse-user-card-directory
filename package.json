@@ -1,0 +1,10 @@
+{
+  "name": "discourse-user-card-directory",
+  "version": "1.0.0",
+  "repository": "https://github.com/discourse/discourse-user-card-directory",
+  "author": "Discourse",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint-config-discourse": "^3.2.0"
+  }
+}
