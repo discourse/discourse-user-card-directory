@@ -1,11 +1,22 @@
 {{#d-section pageClass="users"}}
-  {{#load-more selector=".user-card-directory .user-card-container" action=(action "loadMore")}}
+  {{#load-more
+    selector=".user-card-directory .user-card-container"
+    action=(action "loadMore")
+  }}
     <div class="container">
       <div class="users-directory directory">
-        {{plugin-outlet name="users-top" connectorTagName="div" args=(hash model=model)}}
+        {{plugin-outlet
+          name="users-top"
+          connectorTagName="div"
+          args=(hash model=model)
+        }}
         <div class="directory-controls">
           <div class="period-controls">
-            {{period-chooser period=period onChange=(action (mut period)) fullDay=false}}
+            {{period-chooser
+              period=period
+              onChange=(action (mut period))
+              fullDay=false
+            }}
             {{#if lastUpdatedAt}}
               <div class="directory-last-updated">
                 {{i18n "directory.last_updated"}}
@@ -31,9 +42,7 @@
                 value=group
                 content=groupOptions
                 onChange=(action groupChanged)
-                options=(hash
-                  none="directory.group.all"
-                )
+                options=(hash none="directory.group.all")
               }}
             {{/if}}
             {{#if currentUser.staff}}
@@ -43,49 +52,64 @@
                 class="btn-default open-edit-columns-btn"
               }}
             {{/if}}
-            {{plugin-outlet name="users-directory-controls" connectorTagName="" tagName="" args=(hash model=model)}}
+            {{plugin-outlet
+              name="users-directory-controls"
+              connectorTagName=""
+              tagName=""
+              args=(hash model=model)
+            }}
           </div>
         </div>
 
         {{#conditional-loading-spinner condition=isLoading}}
           {{#if userCards.length}}
-          <div class="user-card-directory">
-            {{#each userCards as |userCard|}}
-              <div class="user-card-container">
-                {{user-card-static
-                  user=userCard.user
-                  visible=true
-                  loading=userCard.loading
-                  username=userCard.user.username
+            <div class="user-card-directory">
+              {{#each userCards as |userCard|}}
+                <div class="user-card-container">
+                  {{user-card-static
+                    user=userCard.user
+                    visible=true
+                    loading=userCard.loading
+                    username=userCard.user.username
                   }}
-                {{#if (theme-setting 'show_stats')}}
-                <div class='user-card-directory-footer'>
-                  {{#each columns as |column|}}
-                    <span class="stat stat-{{stat.name}}">
-                      <span class="value">
-                        {{#if (directory-column-is-user-field column=column)}}
-                          {{directory-item-user-field-value item=userCard.directoryItem column=column}}
-                        {{else}}
-                          {{directory-item-value item=userCard.directoryItem column=column}}
-                        {{/if}}
-                      </span>
-                      <span class="label">
-                        {{table-header-toggle
-                          field=column.name
-                          icon=column.icon
-                          order=order
-                          asc=asc
-                          automatic=(directory-column-is-automatic column=column)
-                          translated=column.user_field_id
-                          onActiveRender=setActiveHeader
-                        }}
-                      </span>
-                    </span>
-                  {{/each}}
+                  {{#if (theme-setting "show_stats")}}
+                    <div class="user-card-directory-footer">
+                      {{#each columns as |column|}}
+                        <span class="stat stat-{{stat.name}}">
+                          <span class="value">
+                            {{#if
+                              (directory-column-is-user-field column=column)
+                            }}
+                              {{directory-item-user-field-value
+                                item=userCard.directoryItem
+                                column=column
+                              }}
+                            {{else}}
+                              {{directory-item-value
+                                item=userCard.directoryItem
+                                column=column
+                              }}
+                            {{/if}}
+                          </span>
+                          <span class="label">
+                            {{table-header-toggle
+                              field=column.name
+                              icon=column.icon
+                              order=order
+                              asc=asc
+                              automatic=(directory-column-is-automatic
+                                column=column
+                              )
+                              translated=column.user_field_id
+                              onActiveRender=setActiveHeader
+                            }}
+                          </span>
+                        </span>
+                      {{/each}}
+                    </div>
+                  {{/if}}
                 </div>
-                {{/if}}
-              </div>
-            {{/each}}
+              {{/each}}
             </div>
             {{conditional-loading-spinner condition=model.loadingMore}}
           {{else}}

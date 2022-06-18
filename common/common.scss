@@ -27,18 +27,18 @@
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   }
 
-  .user-card-container{
+  .user-card-container {
     margin: 60px 20px;
   }
 
   @supports (display: grid) {
     display: grid;
-    
-    .user-card-container{
+
+    .user-card-container {
       margin: 0;
     }
   }
-  
+
   grid-gap: 60px 20px;
   margin-top: 60px;
 
@@ -60,7 +60,7 @@
 
   .user-card-container {
     width: 100%;
-    
+
     background-color: var(--secondary);
     box-shadow: shadow("card");
     margin-bottom: auto;

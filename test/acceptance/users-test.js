@@ -1,7 +1,4 @@
-import {
-  acceptance,
-  count,
-} from "discourse/tests/helpers/qunit-helpers";
+import { acceptance, count } from "discourse/tests/helpers/qunit-helpers";
 import { test } from "qunit";
 import { click, visit } from "@ember/test-helpers";
 
