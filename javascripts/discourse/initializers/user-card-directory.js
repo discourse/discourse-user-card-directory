@@ -1,8 +1,9 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 import discourseComputed from "discourse-common/utils/decorators";
 import User from "discourse/models/user";
-import EmberObject from "@ember/object";
+import EmberObject, { action } from "@ember/object";
 import { ajax } from "discourse/lib/ajax";
+import DiscourseURL, { userPath } from "discourse/lib/url";
 
 export default {
   name: "user-card-directory",
@@ -106,6 +107,11 @@ export default {
           }
 
           return userCardInfos;
+        },
+
+        @action
+        userCardShowUser(user) {
+          DiscourseURL.routeTo(userPath(user.username_lower));
         },
       });
     });
