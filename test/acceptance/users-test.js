@@ -133,7 +133,11 @@ acceptance("User Card Directory", function (needs) {
   test("Displays table when cards=no", async function (assert) {
     await visit("/u?cards=no");
     assert.ok($("body.users-page").length, "has the body class");
-    assert.equal(count(".directory table tr"), 2, "has a list of users");
+    assert.equal(
+      count(".directory .directory-table__row"),
+      2,
+      "has a list of users"
+    );
   });
 
   test("Displays cards when cards=yes", async function (assert) {
@@ -143,10 +147,18 @@ acceptance("User Card Directory", function (needs) {
 
   test("Can toggle between views", async function (assert) {
     await visit("/u?cards=no");
-    assert.equal(count(".directory table tr"), 2, "has two table rows");
+    assert.equal(
+      count(".directory .directory-table__row"),
+      2,
+      "has two table rows"
+    );
     await click(".toggle-cards-button");
     assert.equal(count(".user-card-avatar"), 2, "has two cards");
     await click(".toggle-cards-button");
-    assert.equal(count(".directory table tr"), 2, "has two table rows");
+    assert.equal(
+      count(".directory .directory-table__row"),
+      2,
+      "has two table rows"
+    );
   });
 });

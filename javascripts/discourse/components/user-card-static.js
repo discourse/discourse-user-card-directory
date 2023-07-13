@@ -1,4 +1,5 @@
 import UserCardContents from "discourse/components/user-card-contents";
+import { action } from "@ember/object";
 
 export default UserCardContents.extend({
   layoutName: "components/user-card-contents",
@@ -8,4 +9,10 @@ export default UserCardContents.extend({
   didInsertElement() {},
   willDestroyElement() {},
   keyUp() {},
+
+  // need to override this to work with the loading slider
+  @action
+  handleShowUser() {
+    return;
+  },
 });

@@ -67,26 +67,48 @@
   }
 
   .user-card-directory-footer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(5em, 1fr));
+    padding: 0.75em;
     background-color: var(--secondary);
-    padding: 0px 10px 10px 10px;
-    display: flex;
-    flex-wrap: wrap;
+    gap: 0.25em;
+    border-top: 1px solid var(--primary-low);
+
+    .directory-table__column-header,
+    .directory-table__cell,
+    .directory-table__cell--empty,
+    .directory-table__cell--user-field {
+      border: none;
+    }
 
     .stat {
-      flex-basis: 0;
-      flex-grow: 1;
-
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 2px;
+      gap: 0.1em;
+      border: none;
 
       .label {
-        font-size: $font-down-2;
-
+        font-size: var(--font-down-2);
         .d-icon {
           margin-right: 0.2em;
           color: var(--primary-medium);
+        }
+      }
+
+      &.stat-type-user_field {
+        // long user fields can break the layout
+        // so we truncate these to one line
+        .value {
+          display: flex;
+          overflow: hidden;
+          justify-content: center;
+          width: 100%;
+          min-width: 0;
+          span {
+            min-width: 0;
+            @include ellipsis;
+          }
         }
       }
     }
