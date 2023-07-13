@@ -5,11 +5,11 @@
   }}
     <div class="container">
       <div class="users-directory directory">
-        {{plugin-outlet
-          name="users-top"
-          connectorTagName="div"
-          args=(hash model=model)
-        }}
+        <PluginOutlet
+          @name="users-top"
+          @connectorTagName="div"
+          @outletArgs={{hash model=this.model}}
+        />
         <div class="directory-controls">
           <div class="period-controls">
             {{period-chooser
@@ -30,12 +30,15 @@
                 {{i18n "directory.total_rows" count=model.totalRows}}
               {{/if}}
             </label>
-            {{input
-              value=(readonly nameInput)
-              input=(action "onUsernameFilterChanged" value="target.value")
-              placeholderKey="directory.filter_name"
+            <Input
+              @value={{readonly emailInput}}
+              placeholder={{I18n "directory.filter_name"}}
               class="filter-name no-blur"
-            }}
+              {{on
+                "input"
+                (action "onUsernameFilterChanged" value="target.value")
+              }}
+            />
             {{#if showGroupFilter}}
               {{combo-box
                 class="directory-group-selector"
@@ -52,12 +55,10 @@
                 class="btn-default open-edit-columns-btn"
               }}
             {{/if}}
-            {{plugin-outlet
-              name="users-directory-controls"
-              connectorTagName=""
-              tagName=""
-              args=(hash model=model)
-            }}
+            <PluginOutlet
+              @name="users-directory-controls"
+              @outletArgs={{hash model=this.model}}
+            />
           </div>
         </div>
 
@@ -76,7 +77,10 @@
                   {{#if (theme-setting "show_stats")}}
                     <div class="user-card-directory-footer">
                       {{#each columns as |column|}}
-                        <span class="stat stat-{{stat.name}}">
+                        <span
+                          class="stat stat-{{dasherize column.name}}
+                            stat-type-{{column.type}}"
+                        >
                           <span class="value">
                             {{#if
                               (directory-column-is-user-field column=column)
