@@ -11,6 +11,15 @@ export default {
     withPluginApi("0.8.7", (api) => {
       api.modifyClass("route:users", {
         pluginId: "user-card-directory",
+
+        get templateName() {
+          if (this.modelFor("users")?.showAsCards) {
+            return "users-as-card-directory";
+          } else {
+            return "users";
+          }
+        },
+
         resetController(controller, isExiting) {
           this._super(...arguments);
           if (isExiting) {
@@ -22,28 +31,14 @@ export default {
           cards: { refreshModel: true },
         },
 
-        beforeModel(transition) {
-          this._super(transition);
-          if (
-            settings.default_view === "cards" &&
-            !transition.to.queryParams.cards
-          ) {
-            this.transitionTo({ queryParams: { cards: "yes" } });
-          }
-        },
-
         model(params) {
           return this._super(params).then((model) => {
-            model.showAsCards = params["cards"] === "yes";
+            model.showAsCards =
+              params["cards"] === "yes" ||
+              (params["cards"] === undefined &&
+                settings.default_view === "cards");
             return model;
           });
-        },
-
-        renderTemplate(controller, model) {
-          if (model.showAsCards) {
-            return this.render("users-as-card-directory");
-          }
-          return this._super();
         },
       });
 

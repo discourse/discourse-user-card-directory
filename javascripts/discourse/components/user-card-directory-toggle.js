@@ -8,7 +8,10 @@ export default Component.extend({
 
   @discourseComputed("router.currentRoute.queryParams.cards")
   showingCards(cardsParam) {
-    return cardsParam === "yes";
+    return (
+      cardsParam === "yes" ||
+      (cardsParam === undefined && settings.default_view === "cards")
+    );
   },
 
   actions: {
