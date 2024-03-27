@@ -1,5 +1,4 @@
 import { click, visit } from "@ember/test-helpers";
-import $ from "jquery";
 import { test } from "qunit";
 import { acceptance, count } from "discourse/tests/helpers/qunit-helpers";
 
@@ -133,7 +132,7 @@ acceptance("User Card Directory", function (needs) {
 
   test("Displays table when cards=no", async function (assert) {
     await visit("/u?cards=no");
-    assert.ok($("body.users-page").length, "has the body class");
+    assert.dom(document.body).hasClass(/users-page/);
     assert.equal(
       count(".directory .directory-table__row"),
       2,
