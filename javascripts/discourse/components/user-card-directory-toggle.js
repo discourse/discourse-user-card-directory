@@ -1,9 +1,9 @@
 import Component from "@ember/component";
-import { inject as service } from "@ember/service";
+import { service } from "@ember/service";
 import discourseComputed from "discourse-common/utils/decorators";
 
 export default Component.extend({
-  router: service("router"),
+  router: service(),
   tagName: "",
 
   @discourseComputed("router.currentRoute.queryParams.cards")
