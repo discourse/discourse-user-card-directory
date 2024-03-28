@@ -6,12 +6,10 @@ export default UserCardContents.extend({
   elementId: null,
   // Overriding functions which cause the user card to show/hide based on mouse/keyboard events:
   cleanUp() {},
-  didInsertElement() {
-    this._super(...arguments);
-  },
-  willDestroyElement() {
-    this._super(...arguments);
-  },
+  // eslint-disable-next-line ember/require-super-in-lifecycle-hooks
+  didInsertElement() {},
+  // eslint-disable-next-line ember/require-super-in-lifecycle-hooks
+  willDestroyElement() {},
   keyUp() {},
 
   // need to override this to work with the loading slider
