@@ -1,9 +1,8 @@
-import { withPluginApi } from "discourse/lib/plugin-api";
-import discourseComputed from "discourse-common/utils/decorators";
-import User from "discourse/models/user";
 import EmberObject, { action } from "@ember/object";
 import { ajax } from "discourse/lib/ajax";
+import { withPluginApi } from "discourse/lib/plugin-api";
 import DiscourseURL, { userPath } from "discourse/lib/url";
+import discourseComputed from "discourse-common/utils/decorators";
 
 export default {
   name: "user-card-directory",
@@ -67,7 +66,7 @@ export default {
 
             const userCardInfo = (this.cachedUserCardInfo[u.id] =
               EmberObject.create({
-                user: User.create(u.user),
+                user: this.store.createRecord("user", u.user),
                 directoryItem: u,
                 loading: true,
               }));

@@ -1,6 +1,6 @@
-import { acceptance, count } from "discourse/tests/helpers/qunit-helpers";
-import { test } from "qunit";
 import { click, visit } from "@ember/test-helpers";
+import { test } from "qunit";
+import { acceptance } from "discourse/tests/helpers/qunit-helpers";
 
 acceptance("User Card Directory", function (needs) {
   needs.pretender((server, helper) => {
@@ -132,33 +132,31 @@ acceptance("User Card Directory", function (needs) {
 
   test("Displays table when cards=no", async function (assert) {
     await visit("/u?cards=no");
-    assert.ok($("body.users-page").length, "has the body class");
-    assert.equal(
-      count(".directory .directory-table__row"),
-      2,
-      "has a list of users"
-    );
+    assert.dom(document.body).hasClass(/users-page/);
+    assert
+      .dom(".directory .directory-table__row")
+      .exists({ count: 2 }, "has a list of users");
   });
 
   test("Displays cards when cards=yes", async function (assert) {
     await visit("/u?cards=yes");
-    assert.equal(count(".user-card-avatar"), 2, "has two cards showing");
+    assert
+      .dom(".user-card-avatar")
+      .exists({ count: 2 }, "has two cards showing");
   });
 
   test("Can toggle between views", async function (assert) {
     await visit("/u?cards=no");
-    assert.equal(
-      count(".directory .directory-table__row"),
-      2,
-      "has two table rows"
-    );
+    assert
+      .dom(".directory .directory-table__row")
+      .exists({ count: 2 }, "has two table rows");
+
     await click(".toggle-cards-button");
-    assert.equal(count(".user-card-avatar"), 2, "has two cards");
+    assert.dom(".user-card-avatar").exists({ count: 2 }, "has two cards");
+
     await click(".toggle-cards-button");
-    assert.equal(
-      count(".directory .directory-table__row"),
-      2,
-      "has two table rows"
-    );
+    assert
+      .dom(".directory .directory-table__row")
+      .exists({ count: 2 }, "has two table rows");
   });
 });

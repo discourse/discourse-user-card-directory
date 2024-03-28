@@ -1,4 +1,5 @@
-{{#d-section pageClass="users"}}
+{{body-class "users-page"}}
+<section>
   {{#load-more
     selector=".user-card-directory .user-card-container"
     action=(action "loadMore")
@@ -32,7 +33,7 @@
             </label>
             <Input
               @value={{readonly emailInput}}
-              placeholder={{I18n "directory.filter_name"}}
+              placeholder={{i18n "directory.filter_name"}}
               class="filter-name no-blur"
               {{on
                 "input"
@@ -126,4 +127,4 @@
       </div>
     </div>
   {{/load-more}}
-{{/d-section}}
+</section>
