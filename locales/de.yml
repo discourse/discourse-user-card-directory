@@ -5,3 +5,10 @@
 # https://translate.discourse.org/
 
 de:
+  theme_metadata:
+    description: Ersetzt das Benutzerverzeichnis durch ein Raster aus Benutzerkarten
+    settings:
+      hide_current_user: Den aktuellen Benutzer immer aus dem Raster ausblenden
+      show_stats: Statistiken unter jeder Benutzerkarte anzeigen
+  show_cards: Als Karten anzeigen
+  show_table: Als Tabelle anzeigen
