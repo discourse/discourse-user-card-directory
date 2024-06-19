@@ -11,6 +11,11 @@ export default {
       api.modifyClass("route:users", {
         pluginId: "user-card-directory",
 
+        init() {
+          this._super(...arguments);
+          this.queryParams.cards = { refreshModel: true };
+        },
+
         get templateName() {
           if (this.modelFor("users")?.showAsCards) {
             return "users-as-card-directory";
@@ -24,10 +29,6 @@ export default {
           if (isExiting) {
             controller.set("cachedUserCardInfo", {});
           }
-        },
-
-        queryParams: {
-          cards: { refreshModel: true },
         },
 
         model(params) {
