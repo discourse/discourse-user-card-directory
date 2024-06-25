@@ -5,3 +5,10 @@
 # https://translate.discourse.org/
 
 he:
+  theme_metadata:
+    description: החלפת ספריית המשתמשים ברשת של כרטיסים משתמשים
+    settings:
+      hide_current_user: תמיד להסתיר את המשתמש הנוכחי מהרשת
+      show_stats: הצגת סטטיסטיקה תחת כל כרטיס משתמש
+  show_cards: הצגה ככרטיסים
+  show_table: הצגה כטבלה
