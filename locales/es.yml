@@ -5,3 +5,10 @@
 # https://translate.discourse.org/
 
 es:
+  theme_metadata:
+    description: Sustituye el directorio de usuarios por una cuadrícula de tarjetas de usuario
+    settings:
+      hide_current_user: Ocultar siempre al usuario actual de la cuadrícula
+      show_stats: Mostrar estadísticas debajo de cada tarjeta de usuario
+  show_cards: Mostrar como tarjetas
+  show_table: Mostrar como tabla
