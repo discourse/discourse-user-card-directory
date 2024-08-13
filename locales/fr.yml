@@ -5,3 +5,10 @@
 # https://translate.discourse.org/
 
 fr:
+  theme_metadata:
+    description: Remplace le répertoire des utilisateurs par une grille de cartes d'utilisateur
+    settings:
+      hide_current_user: Toujours masquer l'utilisateur actuel de la grille
+      show_stats: Afficher les statistiques sous chaque carte d'utilisateur
+  show_cards: Afficher sous forme de cartes
+  show_table: Afficher sous forme de tableau

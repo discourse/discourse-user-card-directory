@@ -5,3 +5,10 @@
 # https://translate.discourse.org/
 
 zh_CN:
+  theme_metadata:
+    description: 使用用户卡片网格替换用户目录
+    settings:
+      hide_current_user: 始终在网格中隐藏当前用户
+      show_stats: 在每个用户卡片下显示统计信息
+  show_cards: 以卡片形式显示
+  show_table: 以表形式显示

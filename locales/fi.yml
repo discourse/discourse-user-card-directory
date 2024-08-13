@@ -5,3 +5,10 @@
 # https://translate.discourse.org/
 
 fi:
+  theme_metadata:
+    description: Korvaa käyttäjähakemiston käyttäjäkorttien ruudukolla
+    settings:
+      hide_current_user: Piilota aina nykyinen käyttäjä ruudukosta
+      show_stats: Näytä tilastot kunkin käyttäjäkortin alla
+  show_cards: Näytä kortteina
+  show_table: Näytä taulukkona

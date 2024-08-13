@@ -5,3 +5,10 @@
 # https://translate.discourse.org/
 
 it:
+  theme_metadata:
+    description: Sostituisce la directory utente con una griglia di schede utente
+    settings:
+      hide_current_user: Nascondi sempre l'utente attuale dalla griglia
+      show_stats: Mostra le statistiche sotto ogni scheda utente
+  show_cards: Mostra come schede
+  show_table: Mostra come tabella

@@ -5,3 +5,10 @@
 # https://translate.discourse.org/
 
 ja:
+  theme_metadata:
+    description: ユーザーディレクトリをユーザーカードのグリッドに置き換えます
+    settings:
+      hide_current_user: 現在のユーザーをグリッドから常に非表示にします
+      show_stats: 各ユーザーカードの下に統計情報を表示する
+  show_cards: カードとして表示
+  show_table: テーブルとして表示
