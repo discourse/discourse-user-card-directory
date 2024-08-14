@@ -5,3 +5,10 @@
 # https://translate.discourse.org/
 
 ar:
+  theme_metadata:
+    description: يستبدل دليل المستخدم بشبكة من بطاقات المستخدم
+    settings:
+      hide_current_user: إخفاء المستخدم الحالي من الشبكة دائمًا
+      show_stats: عرض الإحصائيات أسفل كل بطاقة مستخدم
+  show_cards: العرض في بطاقات
+  show_table: العرض في جدول
