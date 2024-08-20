@@ -5,3 +5,10 @@
 # https://translate.discourse.org/
 
 tr_TR:
+  theme_metadata:
+    description: Kullanıcı dizinini kullanıcı kartlarından oluşan bir ızgarayla değiştirir
+    settings:
+      hide_current_user: Mevcut kullanıcıyı her zaman ızgaradan gizle
+      show_stats: Her kullanıcı kartının altında istatistikleri göster
+  show_cards: Kart olarak göster
+  show_table: Tablo olarak göster

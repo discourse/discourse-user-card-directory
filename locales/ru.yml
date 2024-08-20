@@ -5,3 +5,10 @@
 # https://translate.discourse.org/
 
 ru:
+  theme_metadata:
+    description: Заменяет каталог пользователей таблицей карточек пользователей
+    settings:
+      hide_current_user: Всегда скрывать текущего пользователя из таблицы
+      show_stats: Показывать статистику под каждой карточкой пользователя
+  show_cards: Показывать в виде карточек
+  show_table: Показывать в виде таблицы
