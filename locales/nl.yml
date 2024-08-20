@@ -5,3 +5,10 @@
 # https://translate.discourse.org/
 
 nl:
+  theme_metadata:
+    description: Vervangt de gebruikerslijst door een raster van gebruikerskaarten
+    settings:
+      hide_current_user: Huidige gebruiker altijd verbergen in het raster
+      show_stats: Statistieken weergeven onder elke gebruikerskaart
+  show_cards: Weergeven als kaarten
+  show_table: Weergeven als tabel

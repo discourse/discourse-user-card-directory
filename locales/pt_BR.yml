@@ -5,3 +5,10 @@
 # https://translate.discourse.org/
 
 pt_BR:
+  theme_metadata:
+    description: Substitui o diretório do(a) usuário(a) por uma grade com cartões dos(as) usuários(as)
+    settings:
+      hide_current_user: Sempre ocultar o(a) usuário(a) da grade
+      show_stats: Mostrar estatísticas sob o cartão de cada usuário(a)
+  show_cards: Mostrar como cartões
+  show_table: Mostrar como tabela
