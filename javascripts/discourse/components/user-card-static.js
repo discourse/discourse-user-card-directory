@@ -1,5 +1,6 @@
 import { action } from "@ember/object";
 import UserCardContents from "discourse/components/user-card-contents";
+import { getURLWithCDN } from "discourse-common/lib/get-url";
 
 export default UserCardContents.extend({
   layoutName: "components/user-card-contents",
@@ -11,6 +12,23 @@ export default UserCardContents.extend({
   // eslint-disable-next-line ember/require-super-in-lifecycle-hooks
   willDestroyElement() {},
   keyUp() {},
+
+  willRender() {
+    this._super(...arguments);
+    if (!this.element) {
+      return;
+    }
+    const container = this.element.querySelector(".d-user-card__container");
+    if (!container) {
+      return;
+    }
+    container.style.backgroundColor = `#${this.user.avatar_dominant_color}`;
+
+    const backgroundUrl = this.user.card_background_upload_url;
+    if (backgroundUrl) {
+      container.style.background = `url(${getURLWithCDN(backgroundUrl)})`;
+    }
+  },
 
   // need to override this to work with the loading slider
   @action
