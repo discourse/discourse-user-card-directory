@@ -35,9 +35,15 @@
     }
   }
 
-  grid-gap: 20px;
-  margin-top: 20px;
+  grid-gap: 60px 20px;
+  margin-top: 60px;
 
+  &:has(.d-user-card) {
+    grid-gap: 20px;
+    margin-top: 20px;
+  }
+
+  .user-card,
   .d-user-card {
     z-index: z("base");
     position: relative;
@@ -45,6 +51,7 @@
     box-shadow: none;
   }
 
+  .usercard-controls,
   .d-user-card__main-content-bottom {
     display: none;
   }
