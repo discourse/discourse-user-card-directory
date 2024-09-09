@@ -141,7 +141,7 @@ acceptance("User Card Directory", function (needs) {
   test("Displays cards when cards=yes", async function (assert) {
     await visit("/u?cards=yes");
     assert
-      .dom(".user-card-avatar")
+      .dom(".d-user-card__avatar")
       .exists({ count: 2 }, "has two cards showing");
   });
 
@@ -152,7 +152,7 @@ acceptance("User Card Directory", function (needs) {
       .exists({ count: 2 }, "has two table rows");
 
     await click(".toggle-cards-button");
-    assert.dom(".user-card-avatar").exists({ count: 2 }, "has two cards");
+    assert.dom(".d-user-card__avatar").exists({ count: 2 }, "has two cards");
 
     await click(".toggle-cards-button");
     assert
