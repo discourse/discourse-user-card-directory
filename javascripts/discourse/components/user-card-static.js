@@ -2,19 +2,23 @@ import { action } from "@ember/object";
 import UserCardContents from "discourse/components/user-card-contents";
 import { getURLWithCDN } from "discourse-common/lib/get-url";
 
-export default UserCardContents.extend({
-  layoutName: "components/user-card-contents",
-  elementId: null,
+export default class UserCardStatic extends UserCardContents {
+  layoutName = "components/user-card-contents";
+  elementId = null;
   // Overriding functions which cause the user card to show/hide based on mouse/keyboard events:
-  cleanUp() {},
+  cleanUp() {}
   // eslint-disable-next-line ember/require-super-in-lifecycle-hooks
-  didInsertElement() {},
+  didInsertElement() {}
   // eslint-disable-next-line ember/require-super-in-lifecycle-hooks
-  willDestroyElement() {},
-  keyUp() {},
+  willDestroyElement() {}
+  keyUp() {}
 
-  willRender() {
-    this._super(...arguments);
+  didRender() {
+    this.setBackground();
+  }
+
+  @action
+  setBackground() {
     if (!this.element) {
       return;
     }
@@ -28,11 +32,11 @@ export default UserCardContents.extend({
     if (backgroundUrl) {
       container.style.background = `url(${getURLWithCDN(backgroundUrl)})`;
     }
-  },
+  }
 
   // need to override this to work with the loading slider
   @action
   handleShowUser() {
     return;
-  },
-});
+  }
+}
