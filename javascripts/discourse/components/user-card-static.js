@@ -17,5 +17,4 @@ export default class UserCardStaticContents extends UserCardContents.extend() {
   handleShowUser() {
     return;
   }
-
 }
