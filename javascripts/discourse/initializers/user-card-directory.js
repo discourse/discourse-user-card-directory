@@ -115,7 +115,7 @@ export default {
             order: field,
             asc,
           });
-        }
+        },
       });
     });
   },

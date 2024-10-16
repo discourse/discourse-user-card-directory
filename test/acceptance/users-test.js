@@ -1,4 +1,4 @@
-import { click, visit } from "@ember/test-helpers";
+import { click, currentURL, visit } from "@ember/test-helpers";
 import { test } from "qunit";
 import { acceptance } from "discourse/tests/helpers/qunit-helpers";
 
@@ -143,6 +143,16 @@ acceptance("User Card Directory", function (needs) {
     assert
       .dom(".user-card-avatar")
       .exists({ count: 2 }, "has two cards showing");
+  });
+
+  test("Updates the order when column is clicked", async function (assert) {
+    await visit("/u?order=post_count&period=yearly");
+    await click("#table-header-toggle-post_count");
+    assert.equal(
+      currentURL(),
+      "/u?asc=true&order=post_count&period=yearly",
+      "sorts by topic count"
+    );
   });
 
   test("Can toggle between views", async function (assert) {
