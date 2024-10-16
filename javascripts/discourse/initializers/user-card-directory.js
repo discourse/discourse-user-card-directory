@@ -108,6 +108,14 @@ export default {
         userCardShowUser(user) {
           DiscourseURL.routeTo(userPath(user.username_lower));
         },
+
+        @action
+        updateOrder(field, asc) {
+          this.setProperties({
+            order: field,
+            asc,
+          });
+        },
       });
     });
   },
