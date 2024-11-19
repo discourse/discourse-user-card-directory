@@ -6,9 +6,9 @@ export default class UserCardStaticContents extends UserCardContents {
   elementId = null;
   // Overriding functions which cause the user card to show/hide based on mouse/keyboard events:
   cleanUp() {}
-  // eslint-disable-next-line ember/require-super-in-lifecycle-hooks
+
   didInsertElement() {}
-  // eslint-disable-next-line ember/require-super-in-lifecycle-hooks
+
   willDestroyElement() {}
   keyUp() {}
 
