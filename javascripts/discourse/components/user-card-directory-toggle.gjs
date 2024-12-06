@@ -24,7 +24,7 @@ export default class UserCardDirectoryToggle extends Component {
   <template>
     <DButton
       @action={{this.toggleCards}}
-      @icon={{if this.showingCards "th-list" "id-card"}}
+      @icon={{if this.showingCards "table-list" "id-card"}}
       @title={{themePrefix (if this.showingCards "show_table" "show_cards")}}
       class="btn-default open-edit-columns-btn toggle-cards-button"
     />
