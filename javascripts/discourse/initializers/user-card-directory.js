@@ -1,8 +1,8 @@
 import EmberObject, { action } from "@ember/object";
 import { ajax } from "discourse/lib/ajax";
+import discourseComputed from "discourse/lib/decorators";
 import { withPluginApi } from "discourse/lib/plugin-api";
 import DiscourseURL, { userPath } from "discourse/lib/url";
-import discourseComputed from "discourse-common/utils/decorators";
 
 export default {
   name: "user-card-directory",
