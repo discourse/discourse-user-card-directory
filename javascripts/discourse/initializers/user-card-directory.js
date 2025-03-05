@@ -42,81 +42,84 @@ export default {
         },
       });
 
-      api.modifyClass("controller:users", {
-        pluginId: "user-card-directory",
-        cachedUserCardInfo: null,
-
-        init() {
-          this.set("cachedUserCardInfo", {});
-          this._super(...arguments);
-        },
-
-        @discourseComputed("model.content.@each")
-        userCards(allUsers) {
-          if (!allUsers) {
-            return [];
-          }
-          const toLoad = [];
-          if (settings.hide_current_user && this.currentUser) {
-            allUsers = allUsers.filter((u) => u.id !== this.currentUser.id);
-          }
-          const userCardInfos = allUsers.map((u) => {
-            if (this.cachedUserCardInfo[u.id]) {
-              return this.cachedUserCardInfo[u.id];
+      api.modifyClass(
+        "controller:users",
+        (Superclass) =>
+          class extends Superclass {
+            init() {
+              this.set("cachedUserCardInfo", {});
+              super.init(...arguments);
             }
 
-            const userCardInfo = (this.cachedUserCardInfo[u.id] =
-              EmberObject.create({
-                user: this.store.createRecord("user", u.user),
-                directoryItem: u,
-                loading: true,
-              }));
+            @discourseComputed("model.content.@each")
+            userCards(allUsers) {
+              if (!allUsers) {
+                return [];
+              }
+              const toLoad = [];
+              if (settings.hide_current_user && this.currentUser) {
+                allUsers = allUsers.filter((u) => u.id !== this.currentUser.id);
+              }
+              const userCardInfos = allUsers.map((u) => {
+                if (this.cachedUserCardInfo[u.id]) {
+                  return this.cachedUserCardInfo[u.id];
+                }
 
-            toLoad.push(userCardInfo);
+                const userCardInfo = (this.cachedUserCardInfo[u.id] =
+                  EmberObject.create({
+                    user: this.store.createRecord("user", u.user),
+                    directoryItem: u,
+                    loading: true,
+                  }));
 
-            return userCardInfo;
-          });
+                toLoad.push(userCardInfo);
 
-          const loadMax = 50;
-
-          while (toLoad.length > 0) {
-            const thisBatch = toLoad.splice(0, loadMax);
-            const promise = ajax("/user-cards.json", {
-              data: { user_ids: thisBatch.map((uc) => uc.user.id).join(",") },
-            });
-            thisBatch.forEach((uc) => {
-              // Each user card expects its own promise
-              // Rather than making a separate AJAX request for each
-              // We re-use the `user-cards.json` promise, and manipulate the data
-              const convertedPromise = promise.then((data) => {
-                // Find the correct user from users, and put it in the user attribute
-                // Use Object.assign to avoid contaminating the source object
-                return Object.assign({}, data, {
-                  user: data.users.find((u) => u.id === uc.user.id),
-                });
+                return userCardInfo;
               });
-              return uc.user
-                .findDetails({ existingRequest: convertedPromise })
-                .finally(() => uc.set("loading", false));
-            });
+
+              const loadMax = 50;
+
+              while (toLoad.length > 0) {
+                const thisBatch = toLoad.splice(0, loadMax);
+                const promise = ajax("/user-cards.json", {
+                  data: {
+                    user_ids: thisBatch.map((uc) => uc.user.id).join(","),
+                  },
+                });
+                thisBatch.forEach((uc) => {
+                  // Each user card expects its own promise
+                  // Rather than making a separate AJAX request for each
+                  // We re-use the `user-cards.json` promise, and manipulate the data
+                  const convertedPromise = promise.then((data) => {
+                    // Find the correct user from users, and put it in the user attribute
+                    // Use Object.assign to avoid contaminating the source object
+                    return Object.assign({}, data, {
+                      user: data.users.find((u) => u.id === uc.user.id),
+                    });
+                  });
+                  return uc.user
+                    .findDetails({ existingRequest: convertedPromise })
+                    .finally(() => uc.set("loading", false));
+                });
+              }
+
+              return userCardInfos;
+            }
+
+            @action
+            userCardShowUser(user) {
+              DiscourseURL.routeTo(userPath(user.username_lower));
+            }
+
+            @action
+            updateOrder(field, asc) {
+              this.setProperties({
+                order: field,
+                asc,
+              });
+            }
           }
-
-          return userCardInfos;
-        },
-
-        @action
-        userCardShowUser(user) {
-          DiscourseURL.routeTo(userPath(user.username_lower));
-        },
-
-        @action
-        updateOrder(field, asc) {
-          this.setProperties({
-            order: field,
-            asc,
-          });
-        },
-      });
+      );
     });
   },
 };
