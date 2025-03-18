@@ -8,6 +8,9 @@
   "assets": {},
   "color_schemes": {},
   "modifiers": {
-    "svg_icons": ["id-card", "table-list"]
+    "svg_icons": [
+      "id-card",
+      "table-list"
+    ]
   }
 }
