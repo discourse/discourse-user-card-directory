@@ -20,8 +20,9 @@
 
 .user-card-directory {
   display: grid;
-
   grid-template-columns: 1fr;
+  grid-gap: 60px 20px;
+  margin-top: 60px;
 
   @media only screen and (min-width: 500px) {
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -29,18 +30,11 @@
 
   .user-card-container {
     margin: 60px 20px;
+    margin-bottom: auto;
+    width: 100%;
+    background-color: var(--secondary);
+    box-shadow: var(--shadow-card);
   }
-
-  @supports (display: grid) {
-    display: grid;
-
-    .user-card-container {
-      margin: 0;
-    }
-  }
-
-  grid-gap: 60px 20px;
-  margin-top: 60px;
 
   .user-card {
     z-index: z("base");
@@ -56,14 +50,6 @@
 
   .usercard-controls {
     display: none;
-  }
-
-  .user-card-container {
-    width: 100%;
-
-    background-color: var(--secondary);
-    box-shadow: var(--shadow-card);
-    margin-bottom: auto;
   }
 
   .user-card-directory-footer {
@@ -90,6 +76,7 @@
 
       .label {
         font-size: var(--font-down-2);
+
         .d-icon {
           margin-right: 0.2em;
           color: var(--primary-medium);
@@ -105,8 +92,10 @@
           justify-content: center;
           width: 100%;
           min-width: 0;
+
           span {
             min-width: 0;
+
             @include ellipsis;
           }
         }
