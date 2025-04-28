@@ -90,16 +90,26 @@ export default {
                   // Each user card expects its own promise
                   // Rather than making a separate AJAX request for each
                   // We re-use the `user-cards.json` promise, and manipulate the data
-                  const convertedPromise = promise.then((data) => {
+                  promise.then((data) => {
                     // Find the correct user from users, and put it in the user attribute
+                    const foundUser = data.users?.find(
+                      (u) => u.id === uc.user.id
+                    );
+
+                    // cover disabled or inactive profiles
+                    if (!foundUser) {
+                      uc.set("loading", false);
+                      return;
+                    }
+
                     // Use Object.assign to avoid contaminating the source object
-                    return Object.assign({}, data, {
-                      user: data.users.find((u) => u.id === uc.user.id),
-                    });
+                    const convertedPromise = Promise.resolve(
+                      Object.assign({}, data, { user: foundUser })
+                    );
+                    uc.user
+                      .findDetails({ existingRequest: convertedPromise })
+                      .finally(() => uc.set("loading", false));
                   });
-                  return uc.user
-                    .findDetails({ existingRequest: convertedPromise })
-                    .finally(() => uc.set("loading", false));
                 });
               }
 
