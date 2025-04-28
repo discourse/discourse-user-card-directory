@@ -17,7 +17,7 @@ export default class UserCardStaticContents extends UserCardContents {
   @discourseComputed("user.last_seen_at")
   contentHidden(lastSeenAt) {
     // we don't have the full user data available
-    // so it last_seen_at is missing, treat the profile as hidden
+    // so if last_seen_at is missing, treat the profile as hidden
     return !lastSeenAt;
   }
 
