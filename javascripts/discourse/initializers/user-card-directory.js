@@ -7,7 +7,7 @@ import DiscourseURL, { userPath } from "discourse/lib/url";
 export default {
   name: "user-card-directory",
   initialize() {
-    withPluginApi("0.8.7", (api) => {
+    withPluginApi((api) => {
       api.modifyClass("route:users", {
         pluginId: "user-card-directory",
 
