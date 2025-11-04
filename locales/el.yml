@@ -5,3 +5,10 @@
 # https://translate.discourse.org/
 
 el:
+  theme_metadata:
+    description: Αντικαθιστά τον κατάλογο χρηστών με ένα πλέγμα καρτών χρηστών
+    settings:
+      hide_current_user: Να αποκρύπτεται πάντα ο τρέχον χρήστης από το πλέγμα
+      show_stats: Εμφάνιση στατιστικών στοιχείων κάτω από κάθε κάρτα χρήστη
+  show_cards: Εμφάνιση ως κάρτες
+  show_table: Εμφάνιση ως πίνακας
