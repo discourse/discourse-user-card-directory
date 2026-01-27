@@ -21,7 +21,7 @@
 .user-card-directory {
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 100px 20px;
+  gap: 100px 20px;
   margin-top: 60px;
 
   @media only screen and (width >= 500px) {
