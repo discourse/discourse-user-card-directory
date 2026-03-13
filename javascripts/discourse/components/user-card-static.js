@@ -1,6 +1,5 @@
-import { action } from "@ember/object";
+import { action, computed } from "@ember/object";
 import UserCardContents from "discourse/components/user-card-contents";
-import discourseComputed from "discourse/lib/decorators";
 
 export default class UserCardStaticContents extends UserCardContents {
   layoutName = "components/user-card-contents";
@@ -14,11 +13,11 @@ export default class UserCardStaticContents extends UserCardContents {
   willDestroyElement() {}
   keyUp() {}
 
-  @discourseComputed("user.last_seen_at")
-  contentHidden(lastSeenAt) {
+  @computed("user.last_seen_at")
+  get contentHidden() {
     // we don't have the full user data available
     // so if last_seen_at is missing, treat the profile as hidden
-    return !lastSeenAt;
+    return !this.user?.last_seen_at;
   }
 
   // need to override this to work with the loading slider

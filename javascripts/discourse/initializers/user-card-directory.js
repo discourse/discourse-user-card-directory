@@ -1,6 +1,6 @@
-import EmberObject, { action } from "@ember/object";
+/* eslint-disable ember/no-side-effects */
+import EmberObject, { action, computed } from "@ember/object";
 import { ajax } from "discourse/lib/ajax";
-import discourseComputed from "discourse/lib/decorators";
 import { withPluginApi } from "discourse/lib/plugin-api";
 import DiscourseURL, { userPath } from "discourse/lib/url";
 
@@ -51,11 +51,13 @@ export default {
               super.init(...arguments);
             }
 
-            @discourseComputed("model.content.@each")
-            userCards(allUsers) {
+            @computed("model.content.[]")
+            get userCards() {
+              let allUsers = this.model.content;
               if (!allUsers) {
                 return [];
               }
+
               const toLoad = [];
               if (settings.hide_current_user && this.currentUser) {
                 allUsers = allUsers.filter((u) => u.id !== this.currentUser.id);

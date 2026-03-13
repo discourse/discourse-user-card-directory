@@ -148,7 +148,7 @@ acceptance("User Card Directory", function (needs) {
   test("Updates the order when column is clicked", async function (assert) {
     await visit("/u?order=post_count&period=yearly");
     await click("#table-header-toggle-post_count");
-    assert.equal(
+    assert.strictEqual(
       currentURL(),
       "/u?asc=true&order=post_count&period=yearly",
       "sorts by topic count"
