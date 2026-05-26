@@ -1,5 +1,5 @@
-/* eslint-disable ember/no-side-effects */
-import EmberObject, { action, computed } from "@ember/object";
+import { cached } from "@glimmer/tracking";
+import EmberObject, { action } from "@ember/object";
 import { ajax } from "discourse/lib/ajax";
 import { withPluginApi } from "discourse/lib/plugin-api";
 import DiscourseURL, { userPath } from "discourse/lib/url";
@@ -51,9 +51,9 @@ export default {
               super.init(...arguments);
             }
 
-            @computed("model.content.[]")
+            @cached
             get userCards() {
-              let allUsers = this.model.content;
+              let allUsers = this.model?.content;
               if (!allUsers) {
                 return [];
               }

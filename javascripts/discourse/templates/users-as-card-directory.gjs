@@ -31,8 +31,9 @@ export default <template>
 
   <section>
     <LoadMore
-      @selector=".user-card-directory .user-card-container"
       @action={{@controller.loadMore}}
+      @enabled={{@controller.model.canLoadMore}}
+      @isLoading={{@controller.isLoading}}
     >
       <div class="container">
         <div class="users-directory directory">
